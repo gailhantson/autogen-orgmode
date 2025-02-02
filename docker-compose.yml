@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  autogen-emacs:
+    build: .
+    ports:
+      - "2222:22"   # SSH access
+      - "5000:5000" # AutoGen API
+    volumes:
+      - ~/.autogen-config:/config   # Persistent settings
+      - ~/.autogen-org:/home/emacsuser/org  # Persistent org-mode files
+    environment:
+      - AUTOGEN_API_KEY=${AUTOGEN_API_KEY} # Load API key from environment
